@@ -2,6 +2,6 @@
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /alsanmotor/index.php/$1 [L]
+RewriteRule ^(.*)$ /alsan/index.php/$1 [L]
 
 </IfModule>
