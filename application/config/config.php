@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 // $config['base_url'] = '';
-$config['base_url'] = 'https://alsanmotor.herokuapp.com/';
+$config['base_url'] = 'https://alsan.herokuapp.com/';
 // $config['base_url'] = 'http://localhost:8080/alsan/';
 
 
