@@ -12,7 +12,6 @@
  		$this->load->model('model_product');
 		$this->load->model('model_karyawan');
 		$this->load->model('model_transaksi');
-		$this->load->library('session');
 	 }
 	 
  	function index(){
