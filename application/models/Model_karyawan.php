@@ -87,7 +87,7 @@
 	 function get_data_profile($user_id){
 		 $sql="SELECT 
 		 a.kode_karyawan, a.nama_karyawan, a.email, a.jenis_kelamin, a.alamat, a.no_telp, a.tanggal_masuk, b.Nama_Divisi as divisi, a.foto, a.userid 
-		 FROM karyawan a LEFT JOIN divisi b ON A.kode_divisi = B.Kode_Divisi WHERE a.userid='".$user_id."'";
+		 FROM karyawan a LEFT JOIN divisi b ON a.kode_divisi = b.Kode_Divisi WHERE a.userid='".$user_id."'";
 		 $hasil=$this->db->query($sql);
 		 return $hasil->row();
 	 }
