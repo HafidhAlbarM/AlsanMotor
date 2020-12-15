@@ -23,7 +23,7 @@
 			$sub_array[]=$row->nama_mobil;
          $sub_array[]=number_format($row->total);
          $sub_array[]=$row->status;
-         $sub_array[]="<button type='button' class='btn btn-info update' name='update' id='".$row->kode_pemesanan."' data-url='".base_url('C_TransaksiPemesanan/pemesanan_detail/').$row->kode_pemesanan."'><i class='fa fa-archive'></i></button> <a href='".base_url('c_transaksipemesanan/cetak_transaksi_pemesanan')."' class='btn btn-info update' name='cetak'><i class='fa fa-file'></i></a>";
+         $sub_array[]="<button type='button' class='btn btn-info update' name='update' id='".$row->kode_pemesanan."' data-url='".base_url('C_transaksipemesanan/pemesanan_detail/').$row->kode_pemesanan."'><i class='fa fa-archive'></i></button> <a href='".base_url('c_transaksipemesanan/cetak_transaksi_pemesanan')."' class='btn btn-info update' name='cetak'><i class='fa fa-file'></i></a>";
 			$data[]=$sub_array;
 		}
 		$output=array(

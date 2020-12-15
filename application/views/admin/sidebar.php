@@ -59,9 +59,9 @@
                     <li>
                         <a href="<?php echo base_url("c_main/admin_transaksi_penjualan_laporan_detail") ?>" class="waves-effect"><i class="fa fa-file-text-o fa-fw" aria-hidden="true"></i>Selling Detail</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="<?php echo base_url("c_main/admin_laba_rugi_laporan") ?>" class="waves-effect"><i class="fa fa-usd fa-fw" aria-hidden="true"></i>Profit / Loss</a>
-                    </li>
+                    </li> -->
                     <?php } ?>
                     <!-- <li>
                         <a href="<?php echo base_url() ?>c_main/fontawesome.html" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i>Icons</a>
