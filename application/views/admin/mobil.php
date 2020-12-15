@@ -159,14 +159,36 @@
         </div>
 
         <div class="form-group">
-         <label class="control-label col-sm-3">Total Washing</label>
+         <label class="control-label col-sm-3">Total Wash</label>
          <div class="col-sm-9">
             <input type="number" class="form-control" id="jumlah_cuci" name="jumlah_cuci">
          </div>
         </div>
 
+        <div class="form-group">
+         <label class="control-label col-sm-3">User Id</label>
+         <div class="col-sm-9">
+            <input type="text" class="form-control" id="User_Id" name="User_Id">
+            <div id="pesan_error_user_id" style="color:red"></div>
+         </div>
+        </div>
+
+        <div class="form-group">
+         <label class="control-label col-sm-3">E - Mail</label>
+         <div class="col-sm-9">
+            <input type="email" class="form-control" id="Email" name="Email">
+            <div id="pesan_error_email" style="color:red"></div>
+         </div>
+        </div>
+
+        <div class="form-group">
+         <label class="control-label col-sm-3">Password</label>
+         <div class="col-sm-9">
+            <input type="password" class="form-control" id="Password" name="Password">
+         </div>
+        </div>
      
-          </div>
+    </div>
           <div class="modal-footer">
             <input type="submit" name="action" id="btn_save" class="btn btn-success" value="">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
@@ -229,7 +251,7 @@
                     dataType:"json",
                     success:function(data){
                         if (data.data=='ada'){
-                            $("#pesan_error_plat_nomor").html("Plate Number already exist");
+                            $("#pesan_error_plat_nomor").html("Plate Number has already exist");
                         }else{
                             $("#pesan_error_plat_nomor").html("");
                         }
@@ -240,11 +262,53 @@
                 });
             });
 
+            $("#Email").keyup(function(){
+                email=$(this).val();
+                $.ajax({
+                    url:"<?php echo base_url('c_mobil/validasi_email/') ?>",
+                    method:"POST",
+                    dataType:"json",
+                    data:{email: email},
+                    success:function(data){
+                        if(data.data=='ada'){
+                            $("#pesan_error_email").html('Email has already exists');
+                        }else{
+                            $("#pesan_error_email").html('');
+                        }
+                    },
+                    error:function(){
+
+                    }
+                })
+            });
+
+            $("#User_Id").keyup(function(){
+                userId=$(this).val();
+                $.ajax({
+                    url:"<?php echo base_url('c_mobil/validasi_user_id/') ?>",
+                    method:"POST",
+                    dataType:"json",
+                    data:{User_Id: userId},
+                    success:function(data){
+                        if(data.data=='ada'){
+                            $("#pesan_error_user_id").html('User Id has already exists');
+                        }else{
+                            $("#pesan_error_user_id").html('');
+                        }
+                    },
+                    error:function(){
+
+                    }
+                })
+            });
+
             $("#btn_tambah").click(function(){
                 aksi='add';
                 $("#form_mobil")[0].reset();
                 $("#btn_save").val("Save");
                 $("#plat_nomor").attr('readonly', false);
+                $("#User_Id").attr('readonly', false);
+                $("#Email").attr('readonly', false);
                 $("#modal_mobil").modal("show");
             });
 
@@ -258,30 +322,40 @@
                 }
 
                 pesan_error_plat_nomor=$("#pesan_error_plat_nomor").text();
+                pesan_error_email=$("#pesan_error_email").text();
+                pesan_error_user_id=$("#pesan_error_user_id").text();
                 plat_nomor=$("#plat_nomor").val();
 
                 if (plat_nomor != ""){
                     if(pesan_error_plat_nomor == ""){
-                        $.ajax({
-                                url:url,
-                                method:"POST",
-                                dataType:"json",
-                                data:new FormData(this),
-                                contentType:false,
-                                processData:false,
-                                success:function(data){
-                                    $("#form_mobil")[0].reset();
-                                    $("#modal_mobil").modal("hide");
-                                    if (data.status=='simpan'){
-                                        alert('data has been saved');
-                                    }else{
-                                        alert('data has been updated');
+                        if(pesan_error_email == ""){
+                            if(pesan_error_user_id == ""){
+                                $.ajax({
+                                    url:url,
+                                    method:"POST",
+                                    dataType:"json",
+                                    data:new FormData(this),
+                                    contentType:false,
+                                    processData:false,
+                                    success:function(data){
+                                        $("#form_mobil")[0].reset();
+                                        $("#modal_mobil").modal("hide");
+                                        if (data.status=='simpan'){
+                                            alert('data has been saved');
+                                        }else{
+                                            alert('data has been updated');
+                                        }
+                                        dataTable.ajax.reload();
                                     }
-                                    dataTable.ajax.reload();
-                                }
-                            });
+                                });
+                            }else{
+                                alert("User Id has already exists");
+                            }
+                        }else{
+                            alert("Email has already exists");
+                        }
                     }else{
-                        alert("Plate Number is already exist");   
+                        alert("Plate Number has already exists");   
                     }
                 }else{
                     alert("Plate Number is required");
@@ -296,6 +370,8 @@
                 $("#btn_save").val("Update");
                 $('#plat_nomor').val(plat_nomor);
                 $("#plat_nomor").attr('readonly', true);
+                $("#User_Id").attr('readonly', true);
+                $("#Email").attr('readonly', true);
                 $.ajax({
                     url:"<?php echo base_url('c_mobil/edit/') ?>" + plat_nomor,
                     method:"GET",
@@ -307,6 +383,8 @@
                         $("#pemilik").val(data.pemilik);
                         $("#jenis").val(data.jenis);
                         $("#jumlah_cuci").val(data.jumlah_cuci);
+                        $("#User_Id").val(data.User_Id);
+                        $("#Email").val(data.email);
 
                         $("#modal_mobil").modal("show");
                         $('#btn_add').val('update');
