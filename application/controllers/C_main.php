@@ -211,7 +211,7 @@
 
 	 function admin_transaksi_penjualan_laporan(){
 		if(isset($this->session->user_id)){
-			if( $this->session->level=='2' ){
+			if( $this->session->level=='1' ){
 				$this->load->view('admin/transaksi_penjualan_laporan');
 			}else{
 				$this->admin_index();

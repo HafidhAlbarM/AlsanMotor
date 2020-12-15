@@ -199,6 +199,13 @@
          </div>
         </div>
 
+        <div class="form-group">
+         <label class="control-label col-sm-3">Password</label>
+         <div class="col-sm-9">
+            <input type="password" class="form-control" id="Password" name="Password">
+         </div>
+        </div>
+
      </div>
 
      

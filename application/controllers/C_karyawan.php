@@ -60,14 +60,29 @@
  			 'userid'=>$this->input->post('userid')
  			);
  			$this->mymodel->insert("karyawan",$data);
- 			$this->model_karyawan->update_kode_karyawan();
+			$this->model_karyawan->update_kode_karyawan();
+			if(!empty($this->input->post('email')) && !empty($this->input->post('Password'))){
+				if($this->input->post('kode_divisi')=='OWN'){
+					$level = 1;
+				}else{
+					$level = 2;
+				}
+				$data_user=array(
+					'User_Id'=>$this->input->post('userid'),
+					'email'=>$this->input->post('email'),
+					'Password'=>md5($this->input->post('Password')),
+					'Levell'=>$level
+				);
+				$this->mymodel->insert('userr',$data_user);
+			}
  			$status=array("status"=>"simpan");
  			echo json_encode($status);
  			//echo "Berhasil menambahkan Mobil";
  	}
 
  	function update(){
- 			$where=array('kode_karyawan'=>$this->input->post('kode_karyawan'));
+			$where=array('kode_karyawan'=>$this->input->post('kode_karyawan'));
+			$data_karyawan = $this->mymodel->GetWhere('karyawan',$where);
 
  			$data=array(
 			 'nama_karyawan'=>$this->input->post('nama_karyawan'),
@@ -80,7 +95,30 @@
  			 'foto'=>$this->upload_gambar(),
  			 'userid'=>$this->input->post('userid')
  			);
- 			$this->mymodel->update("karyawan",$data,$where);
+			$this->mymodel->update("karyawan",$data,$where);
+			
+
+			if($this->input->post('kode_divisi')=='OWN'){
+				$level = 1;
+			}else{
+				$level = 2;
+			}
+			$data_user=array(
+				'User_Id'=>$this->input->post('userid'),
+				'email'=>$this->input->post('email'),
+				'Levell'=>$level
+			);			
+
+			if(!empty($this->input->post('Password'))){
+				$data_user_password = array('Password'=>md5($this->input->post('Password')));
+				// var_dump($data_user);
+				// var_dump($data_user_password);
+				$data_insert_user = array_merge($data_user, $data_user_password);
+			}
+			
+			$where = array('User_Id'=>$data_karyawan->userid);
+			$this->mymodel->update('userr',$data_insert_user, $where);
+			
  			$status=array("status"=>"update");
  			echo json_encode($status);
  			//echo "Berhasil mengupdate Mobil";
@@ -118,8 +156,11 @@
  	}
 
  	function delete($kode_karyawan){
- 		$where=array('kode_karyawan'=>$kode_karyawan);
- 		$this->mymodel->delete('karyawan',$where);
+		$where=array('kode_karyawan'=>$kode_karyawan);
+		$data_karyawan = $this->mymodel->getWhere('karyawan',$where);
+		$this->mymodel->delete('karyawan',$where);
+		$where=array('User_Id'=>$data_karyawan->userid);
+		$this->mymodel->delete('userr',$where);
  		$status=array("status"=>"sukses");
  		echo json_encode($status);
  	}

@@ -15,7 +15,7 @@
                         <a href="<?php echo base_url('c_main/admin_transaksi_penjualan') ?>" class="waves-effect"><i class="fa fa-dollar fa-fw" aria-hidden="true"></i>Selling Transaction</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('c_main/admin_transaksi_penjualan_list') ?>" class="waves-effect"><i class="fa fa-dollar fa-fw" aria-hidden="true"></i> Transaction List</a>
+                        <a href="<?php echo base_url('c_main/admin_transaksi_penjualan_list') ?>" class="waves-effect"><i class="fa fa-dollar fa-fw" aria-hidden="true"></i>Selling Transaction List</a>
                     </li>
                     <li>
                         <a href="<?php echo base_url('c_main/admin_transaksi_pemesanan_list') ?>" class="waves-effect"><i class="fa fa-dollar fa-fw" aria-hidden="true"></i> Order List</a>
@@ -25,9 +25,9 @@
                     <li>
                         <a href="<?php echo base_url('c_main/admin_transaksi_pembelian') ?>" class="waves-effect"><i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>Purchasing Transaction</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="<?php echo base_url('c_main/admin_transaksi_beban') ?>" class="waves-effect"><i class="fa fa-bolt fa-fw" aria-hidden="true"></i>Expense Transaction</a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="<?php echo base_url('c_main/admin_product') ?>" class="waves-effect"><i class="fa fa-archive fa-fw" aria-hidden="true"></i>Product</a>
                     </li>
