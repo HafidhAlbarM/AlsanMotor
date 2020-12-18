@@ -6,28 +6,25 @@
     Berikut adalah nomor pembelian Anda:</p>
     <p><?= $kode_penjualan ?></p>
     <p><i>simpan email konfirmasi ini sebagai bukti transaksi</i></p>
-    <table style="width:100%" border="1">
+    <table class="table">
         <tr>
-            <td>Nama Barang</td>
-            <td>Harga</td>
-            <td>Qty</td>
-            <td>Subtotal</td>
+            <th>Nama Barang</th>
+            <th>Harga</th>
+            <th>Qty</th>
+            <th>Subtotal</th>
         </tr>
         <?php 
             foreach($data_detail_pemesanan as $row){
         ?>
         <tr>
             <td><?= $row->Nama_Product ?></td>
-            <td><?= $row->harga ?></td>
+            <td><?= 'Rp. '.number_format($row->harga) ?></td>
             <td><?= $row->qty ?></td>
-            <td><?= $row->sub_total ?></td>
+            <td><?= 'Rp. '.number_format($row->sub_total) ?></td>
         </tr>
         <?php 
             }
         ?>
-        <tr>
-            <td><?= $row->Nama_Product?></td>
-        </tr>
     </table>
     <?php 
         foreach($data_detail_pemesanan as $row){
