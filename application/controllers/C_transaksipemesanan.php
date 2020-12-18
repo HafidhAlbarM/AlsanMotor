@@ -80,7 +80,7 @@
 
             $this->mymodel->update('pemesanan_h',array('status'=>'LUNAS'),array('kode_pemesanan'=>$kode_pemesanan));
             $data_pemesan = $this->model_transaksi->data_pemesan($data_header_pemesanan->plat_nomor);
-            $this->sendEmail($kode_penjualan, $data_header_pemesanan->kode_pemesanan, $data_pemesan);
+            $this->sendEmail($kode_penjualan, $data_header_pemesanan->kode_pemesanan, $data_pemesan, $data_detail_pemesanan);
       }
 
       // UPDATE JUMLAH TRANSAKSI UTK KODE OTOMATIS
@@ -91,7 +91,7 @@
       return;
    }
 
-   public function sendEmail($kode_penjualan, $kode_pemesanan, $data_pemesan)
+   public function sendEmail($kode_penjualan, $kode_pemesanan, $data_pemesan, $data_detail_pemesanan)
 	{
       $config['protocol']  = 'smtp';
       $config['smtp_host'] = 'ssl://smtp.gmail.com';
@@ -105,7 +105,8 @@
                   'pemilik' => $data_pemesan->pemilik,
                   'alamat' =>  $data_pemesan->alamat,
                   'kode_penjualan' => $kode_penjualan,
-                  'kode_pemesanan' => $kode_pemesanan
+                  'kode_pemesanan' => $kode_pemesanan,
+                  'data_detail_pemesanan' => $data_detail_pemesanan
               );
 		$body = $this->load->view('admin/body_email',$data,TRUE); 
 		$this->load->library('email',$config);
