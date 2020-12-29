@@ -348,6 +348,15 @@
             </div>
           </div>
         </section>
+        <section class="portfolio text-center section-padding" id="playstore">
+          <div class="container">
+            <div class="row">
+              <a href="<?= base_url('assets/apk/alsan.apk')?>">
+                <img src="<?= base_url('assets/img/get-it-on-playstore.png')?>" height="150px">
+              </a>
+            </div>
+          </div>
+        </section>
         <section class="subscribe text-center">
           <div class="container">
             <h1><i class="fa fa-paper-plane"></i><span>Contact Us</span></h1>
