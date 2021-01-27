@@ -351,7 +351,7 @@
         <section class="portfolio text-center section-padding" id="playstore">
           <div class="container">
             <div class="row">
-              <a href="https://play.google.com/store/apps/details?id=com.hafidh.alsan">
+              <a href="https://play.google.com/store/apps/details?id=com.hafidh.alsan" target="_blank">
                 <img src="<?= base_url('assets/img/get-it-on-playstore.png')?>" height="150px">
               </a>
             </div>
